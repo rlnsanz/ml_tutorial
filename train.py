@@ -13,15 +13,15 @@ import flor
 device = torch.device(
     flor.arg(
         "device",
-        "mps"
-        if torch.backends.mps.is_available()
-        else "cuda"
-        if torch.cuda.is_available()
-        else "cpu",
+        (
+            "mps"
+            if torch.backends.mps.is_available()
+            else "cuda" if torch.cuda.is_available() else "cpu"
+        ),
     )
 )
 
-seed = flor.arg("seed", default=randint(1, 1e10))
+seed = flor.arg("seed", default=randint(1, 10000))
 torch.manual_seed(seed)
 
 # Hyper-parameters
