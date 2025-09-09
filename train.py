@@ -59,8 +59,8 @@ class NeuralNet(nn.Module):
 
     def forward(self, x):
         out = self.fc1(x)
-        out = self.fc2(out)
-        out = self.relu(out)
+        out = self.relu(out)  # move ReLU here
+        out = self.fc2(out)  # return raw logits for CrossEntropyLoss
         return out
 
 
